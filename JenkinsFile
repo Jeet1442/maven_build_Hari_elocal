@@ -1,8 +1,6 @@
 pipeline{
    agent any
-   tools{
-     maven 'M3'
-   }
+   def mvnHome = tool 'M3'
    stages{
      stage('Checkout'){
        steps{
@@ -16,14 +14,14 @@ pipeline{
 	}
 	stage('Install'){
 	  steps{
-	    bat 'mvn install'
-		
+	    bat '${mvnHome}/bin/mvn test'
+		junit '**/target/surefire-reports/TEST-*.xml'
 	  }
 	}
 	stage('TEST'){
 	  steps{
-	    bat 'mvn test'
-		junit '**/target/surefire-reports/TEST-*.xml'
+	    bat 'mvn install'
+		
 	  }
 	}
   }
