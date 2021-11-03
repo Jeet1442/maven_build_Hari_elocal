@@ -14,13 +14,13 @@ pipeline{
 	    bat 'mvn clean'
 	  }
 	}
-	stage('Install'){
+	stage('Test'){
 	  steps{
-	    bat '${M3}/bin/mvn test'
-		junit '**/target/surefire-reports/TEST-*.xml'
+	    bat 'mvn test'
+		
 	  }
 	}
-	stage('TEST'){
+	stage('Install'){
 	  steps{
 	    bat 'mvn install'
 		
