@@ -6,7 +6,7 @@ pipeline{
    stages{
      stage('Checkout'){
        steps{
-	     git 'https://github.com/Jeet1442/maven_build_Hari_elocal.git'
+	     git branch: 'main', url: 'https://github.com/Jeet1442/maven_build_Hari_elocal.git'
 	   }
     }
 	stage('Build'){
