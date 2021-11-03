@@ -4,18 +4,27 @@ pipeline{
      maven 'M3'
    }
    stages{
-     stage('Checkout, Test, Publish'){
+     stage('Checkout'){
        steps{
 	     git branch: 'main', url: 'https://github.com/Jeet1442/maven_build_Hari_elocal.git'
-		 script{
-		    bat(/mvn clean test/)
-		 }
-		 
-		 step([$class : 'Publisher', reportFilenamePattern : '**/target/surefire-reports/TEST-*.xml'])
 	   }
     }
-	
-	
-	
+	stage('Build'){
+	  steps{
+	    bat 'mvn clean'
+	  }
+	}
+	stage('Install'){
+	  steps{
+	    bat 'mvn install'
+		
+	  }
+	}
+	stage('TEST'){
+	  steps{
+	    bat 'mvn test'
+		junit '**/target/surefire-reports/TEST-*.xml'
+	  }
+	}
   }
 }
