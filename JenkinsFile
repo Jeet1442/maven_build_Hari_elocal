@@ -20,9 +20,9 @@ pipeline{
 		junit '**/target/surefire-reports/TEST-*.xml'
 	  }
 	}
-	stage('Package'){
+	stage('Install'){
 	  steps{
-	    bat 'mvn package'
+	    bat 'mvn install'
 	  }
 	}
   }
